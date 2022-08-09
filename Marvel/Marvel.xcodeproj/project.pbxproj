@@ -12,6 +12,7 @@
 		BC5CA64328A239FA00DEDCC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA64228A239FA00DEDCC9 /* ViewController.swift */; };
 		BC5CA64828A23A0300DEDCC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC5CA64728A23A0300DEDCC9 /* Assets.xcassets */; };
 		BC5CA64B28A23A0300DEDCC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC5CA64928A23A0300DEDCC9 /* LaunchScreen.storyboard */; };
+		BC5CA65328A23D6600DEDCC9 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA65228A23D6600DEDCC9 /* Observer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		BC5CA64728A23A0300DEDCC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC5CA64A28A23A0300DEDCC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC5CA64C28A23A0300DEDCC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC5CA65228A23D6600DEDCC9 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				BC5CA64728A23A0300DEDCC9 /* Assets.xcassets */,
 				BC5CA64928A23A0300DEDCC9 /* LaunchScreen.storyboard */,
 				BC5CA64C28A23A0300DEDCC9 /* Info.plist */,
+				BC5CA65228A23D6600DEDCC9 /* Observer.swift */,
 			);
 			path = Marvel;
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC5CA64328A239FA00DEDCC9 /* ViewController.swift in Sources */,
+				BC5CA65328A23D6600DEDCC9 /* Observer.swift in Sources */,
 				BC5CA63F28A239FA00DEDCC9 /* AppDelegate.swift in Sources */,
 				BC5CA64128A239FA00DEDCC9 /* SceneDelegate.swift in Sources */,
 			);
