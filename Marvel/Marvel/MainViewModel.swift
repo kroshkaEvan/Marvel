@@ -26,9 +26,7 @@ class MainViewModel: NSObject, MainViewModelProtocol {
     var characters: Observable<[Character]> = Observable([])
     var viewState: Observable<ViewState> = Observable(.loading)
     var error: Observable<NetworkError> = Observable(.serverError)
-    
-    private let networkManager = NetworkManager()
-    
+        
     override init() {
         super .init()
         fetchCharacters()
@@ -36,7 +34,7 @@ class MainViewModel: NSObject, MainViewModelProtocol {
     
     func fetchCharacters(with name: String? = nil) {
         self.viewState.value = .loading
-        networkManager.fetchCharacters(with: name) { [weak self] (result) in
+        NetworkManager.shared.fetchCharacters(with: name) { [weak self] (result) in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 switch result {

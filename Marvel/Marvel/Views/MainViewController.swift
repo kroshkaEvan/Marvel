@@ -15,8 +15,12 @@ class MainViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: cellsSpacing ,
                                            left: cellsSpacing ,
                                            bottom: cellsSpacing,
-                                           right: cellsSpacing )
-        let numberOfItemsInSection = 2
+                                           right: cellsSpacing)
+        var numberOfItemsInSection = 2
+        // for iPad
+        if view.frame.size.width > 500 {
+            numberOfItemsInSection = 5
+        }
         let cellWidth = (view.bounds.width
                          - cellsSpacing
                          * (CGFloat(numberOfItemsInSection) + 1)) / CGFloat(numberOfItemsInSection)

@@ -44,7 +44,6 @@ class MainCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
-        shadowDecorate()
     }
     
     required init?(coder: NSCoder) {
@@ -123,6 +122,7 @@ class MainCell: UICollectionViewCell {
     
     private func setupLayout() {
         self.backgroundColor = .lightGray
+        shadowDecorate()
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
