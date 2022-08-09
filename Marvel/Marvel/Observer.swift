@@ -93,5 +93,4 @@ private extension ObservationHelper {
     guard count >= maxNilObserversCount else { return }
     compactObservers()
   }
-  
 }
