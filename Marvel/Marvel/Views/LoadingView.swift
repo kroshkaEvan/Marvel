@@ -19,7 +19,7 @@ class LoadingView: UIView {
     }()
     
     private lazy var blurEffectView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .systemThickMaterialDark)
+        let blurEffect = UIBlurEffect(style: .systemThickMaterial)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.alpha = 0.5
         blurEffectView.translatesAutoresizingMaskIntoConstraints = false

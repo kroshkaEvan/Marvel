@@ -15,7 +15,6 @@ class MainCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 10
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -30,7 +29,6 @@ class MainCell: UICollectionViewCell {
             .defaultHigh,
             for: .horizontal)
         label.adjustsFontForContentSizeCategory = true
-//        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -39,7 +37,7 @@ class MainCell: UICollectionViewCell {
                                                        nameLabel])
         stackView.axis = .vertical
         stackView.spacing = 3
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -69,34 +67,51 @@ class MainCell: UICollectionViewCell {
     }
     
     private func animateCell(isHighlighted: Bool,
-                         completion: ((Bool) -> Void)?=nil) {
-        let animationOptions: UIView.AnimationOptions = [.allowUserInteraction]
+                             completion: ((Bool) -> Void)?=nil) {
         if isHighlighted {
-            UIView.animate(withDuration: 0.5,
-                           delay: 0.3,
-                           usingSpringWithDamping: 1,
-                           initialSpringVelocity: 0,
-                           options: animationOptions, animations: {
-                self.transform = .init(scaleX: 0.92, y: 0.92)
-            }, completion: completion)
-        } else {
-            UIView.animate(withDuration: 0.5,
+            self.animateBackgroundColour ()
+            UIView.animate(withDuration: 0.45,
                            delay: 0,
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 0,
-                           options: animationOptions, animations: {
+                           options: .allowUserInteraction, animations: {
+                self.transform = .init(scaleX: 0.92, y: 0.92)
+            }, completion: completion)
+        } else {
+            self.backgroundColor = .lightGray
+            UIView.animate(withDuration: 0.45,
+                           delay: 0,
+                           usingSpringWithDamping: 1,
+                           initialSpringVelocity: 0,
+                           options: .allowUserInteraction, animations: {
                 self.transform = .identity
             }, completion: completion)
         }
+    }
+    
+    private func animateBackgroundColour() {
+        let backgroundColours = [UIColor.lightGray, UIColor.red]
+        var backgroundLoop = 0
+        if backgroundLoop < backgroundColours.count - 1 {
+            backgroundLoop += 1
+        } else {
+            backgroundLoop = 0
+        }
+        UIView.animate(withDuration: 0.45,
+                       delay: 0,
+                       options: .allowUserInteraction,
+                       animations: {
+            self.backgroundColor = backgroundColours[ backgroundLoop]
+        })
     }
     
     private func shadowDecorate() {
         let radius: CGFloat = 10
         contentView.layer.cornerRadius = radius
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.lightGray.cgColor
+        contentView.layer.borderColor = UIColor.white.cgColor
         contentView.layer.masksToBounds = true
-        layer.shadowColor = UIColor.white.cgColor
+        layer.shadowColor = UIColor.red.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 1.0)
         layer.shadowRadius = 4.5
         layer.shadowOpacity = 3
@@ -107,7 +122,7 @@ class MainCell: UICollectionViewCell {
     }
     
     private func setupLayout() {
-        self.backgroundColor = .darkGray
+        self.backgroundColor = .lightGray
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Nuke
 
 enum SizeImage: String {
     case standardMedium = "standard_medium" // 100x100px
@@ -26,13 +25,9 @@ struct CharacterImage: Decodable {
         case format = "extension"
     }
     
-    private func getImageView(size: SizeImage) -> UIImageView? {
-        let imageView = UIImageView()
-        if let path = path,
-           let format = format,
-           let imageURL = URL(string: "\(path)/\(size.rawValue).\(format)") {
-            Nuke.loadImage(with: imageURL, into: imageView)
-        }
-        return imageView
+    func getImageURL(size: SizeImage) -> URL? {
+        guard let path = path,
+              let format = format else { return nil }
+        return URL(string: "\(path)/\(size.rawValue).\(format)")
     }
 }
