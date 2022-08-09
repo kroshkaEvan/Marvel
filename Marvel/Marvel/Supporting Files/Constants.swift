@@ -22,4 +22,8 @@ class Constants {
                                 "ts": timestamp,
                                 "hash": hash]
     }
+    
+    class Strings {
+        static let placeholder = "Enter A Marvel Character"
+    }
 }

@@ -24,6 +24,7 @@
 		BC5CA66F28A2594200DEDCC9 /* Date + Ext..swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA66E28A2594200DEDCC9 /* Date + Ext..swift */; };
 		BC5CA67128A25A7D00DEDCC9 /* Strings + Ext..swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA67028A25A7D00DEDCC9 /* Strings + Ext..swift */; };
 		BC5CA67328A26E4D00DEDCC9 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA67228A26E4D00DEDCC9 /* LoadingView.swift */; };
+		BC5CA67528A26FED00DEDCC9 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA67428A26FED00DEDCC9 /* MainCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		BC5CA66E28A2594200DEDCC9 /* Date + Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Ext..swift"; sourceTree = "<group>"; };
 		BC5CA67028A25A7D00DEDCC9 /* Strings + Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings + Ext..swift"; sourceTree = "<group>"; };
 		BC5CA67228A26E4D00DEDCC9 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		BC5CA67428A26FED00DEDCC9 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			children = (
 				BC5CA64228A239FA00DEDCC9 /* MainViewController.swift */,
 				BC5CA67228A26E4D00DEDCC9 /* LoadingView.swift */,
+				BC5CA67428A26FED00DEDCC9 /* MainCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				BC5CA64328A239FA00DEDCC9 /* MainViewController.swift in Sources */,
 				BC5CA65328A23D6600DEDCC9 /* Observer.swift in Sources */,
 				BC5CA63F28A239FA00DEDCC9 /* AppDelegate.swift in Sources */,
+				BC5CA67528A26FED00DEDCC9 /* MainCell.swift in Sources */,
 				BC5CA67328A26E4D00DEDCC9 /* LoadingView.swift in Sources */,
 				BC5CA66A28A2548000DEDCC9 /* NetworkManager.swift in Sources */,
 				BC5CA64128A239FA00DEDCC9 /* SceneDelegate.swift in Sources */,
