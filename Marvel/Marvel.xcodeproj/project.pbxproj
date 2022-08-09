@@ -16,6 +16,9 @@
 		BC5CA65628A23F2400DEDCC9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BC5CA65528A23F2400DEDCC9 /* Alamofire */; };
 		BC5CA65928A23FD300DEDCC9 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = BC5CA65828A23FD300DEDCC9 /* Nuke */; };
 		BC5CA65C28A2402B00DEDCC9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BC5CA65B28A2402B00DEDCC9 /* SnapKit */; };
+		BC5CA66028A242AD00DEDCC9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA65F28A242AD00DEDCC9 /* Constants.swift */; };
+		BC5CA66228A247D000DEDCC9 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA66128A247D000DEDCC9 /* Character.swift */; };
+		BC5CA66428A2489800DEDCC9 /* CharacterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA66328A2489800DEDCC9 /* CharacterImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 		BC5CA64A28A23A0300DEDCC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC5CA64C28A23A0300DEDCC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC5CA65228A23D6600DEDCC9 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		BC5CA65F28A242AD00DEDCC9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BC5CA66128A247D000DEDCC9 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		BC5CA66328A2489800DEDCC9 /* CharacterImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +68,50 @@
 		BC5CA63D28A239FA00DEDCC9 /* Marvel */ = {
 			isa = PBXGroup;
 			children = (
-				BC5CA63E28A239FA00DEDCC9 /* AppDelegate.swift */,
-				BC5CA64028A239FA00DEDCC9 /* SceneDelegate.swift */,
-				BC5CA64228A239FA00DEDCC9 /* ViewController.swift */,
-				BC5CA64728A23A0300DEDCC9 /* Assets.xcassets */,
-				BC5CA64928A23A0300DEDCC9 /* LaunchScreen.storyboard */,
+				BC5CA66528A2532900DEDCC9 /* Models */,
+				BC5CA66728A2534300DEDCC9 /* ViewModels */,
+				BC5CA66828A2535B00DEDCC9 /* Views */,
+				BC5CA66628A2533400DEDCC9 /* Supporting Files */,
 				BC5CA64C28A23A0300DEDCC9 /* Info.plist */,
-				BC5CA65228A23D6600DEDCC9 /* Observer.swift */,
 			);
 			path = Marvel;
+			sourceTree = "<group>";
+		};
+		BC5CA66528A2532900DEDCC9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BC5CA65228A23D6600DEDCC9 /* Observer.swift */,
+				BC5CA66128A247D000DEDCC9 /* Character.swift */,
+				BC5CA66328A2489800DEDCC9 /* CharacterImage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BC5CA66628A2533400DEDCC9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC5CA64928A23A0300DEDCC9 /* LaunchScreen.storyboard */,
+				BC5CA64728A23A0300DEDCC9 /* Assets.xcassets */,
+				BC5CA64028A239FA00DEDCC9 /* SceneDelegate.swift */,
+				BC5CA63E28A239FA00DEDCC9 /* AppDelegate.swift */,
+				BC5CA65F28A242AD00DEDCC9 /* Constants.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC5CA66728A2534300DEDCC9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BC5CA66828A2535B00DEDCC9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BC5CA64228A239FA00DEDCC9 /* ViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,10 +194,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC5CA66228A247D000DEDCC9 /* Character.swift in Sources */,
 				BC5CA64328A239FA00DEDCC9 /* ViewController.swift in Sources */,
 				BC5CA65328A23D6600DEDCC9 /* Observer.swift in Sources */,
 				BC5CA63F28A239FA00DEDCC9 /* AppDelegate.swift in Sources */,
 				BC5CA64128A239FA00DEDCC9 /* SceneDelegate.swift in Sources */,
+				BC5CA66028A242AD00DEDCC9 /* Constants.swift in Sources */,
+				BC5CA66428A2489800DEDCC9 /* CharacterImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
