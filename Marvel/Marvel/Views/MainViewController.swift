@@ -6,9 +6,16 @@
 //
 
 import UIKit
+import SnapKit
 
-class ViewController: UIViewController {
-
+class MainViewController: UIViewController {
+    
+    private lazy var loadingView: LoadingView = {
+        let loading =  LoadingView()
+        loading.layer.zPosition = 999
+        return loading
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
