@@ -13,10 +13,12 @@ struct Character: Decodable {
     let description: String?
     let comicsImages : [CharacterImage]?
     let image: CharacterImage?
-    let comics: ComicList?
+    let comics: Comics?
     
     enum CodingKeys: String, CodingKey {
-        case id, name, description
+        case id
+        case name
+        case description
         case comicsImages = "images"
         case image = "thumbnail"
         case comics
@@ -33,11 +35,11 @@ struct Characters: Decodable {
     }
 }
 
-struct ComicList: Decodable {
-    let items: [ComicSummary]?
+struct Comics: Decodable {
+    let items: [ComicsName]?
 }
 
-struct ComicSummary: Decodable {
+struct ComicsName: Decodable {
     let name: String?
 }
 

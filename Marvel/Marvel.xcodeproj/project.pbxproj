@@ -19,6 +19,10 @@
 		BC5CA66028A242AD00DEDCC9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA65F28A242AD00DEDCC9 /* Constants.swift */; };
 		BC5CA66228A247D000DEDCC9 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA66128A247D000DEDCC9 /* Character.swift */; };
 		BC5CA66428A2489800DEDCC9 /* CharacterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA66328A2489800DEDCC9 /* CharacterImage.swift */; };
+		BC5CA66A28A2548000DEDCC9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA66928A2548000DEDCC9 /* NetworkManager.swift */; };
+		BC5CA66C28A257CC00DEDCC9 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA66B28A257CC00DEDCC9 /* NetworkError.swift */; };
+		BC5CA66F28A2594200DEDCC9 /* Date + Ext..swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA66E28A2594200DEDCC9 /* Date + Ext..swift */; };
+		BC5CA67128A25A7D00DEDCC9 /* Strings + Ext..swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA67028A25A7D00DEDCC9 /* Strings + Ext..swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,10 @@
 		BC5CA65F28A242AD00DEDCC9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC5CA66128A247D000DEDCC9 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		BC5CA66328A2489800DEDCC9 /* CharacterImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImage.swift; sourceTree = "<group>"; };
+		BC5CA66928A2548000DEDCC9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BC5CA66B28A257CC00DEDCC9 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		BC5CA66E28A2594200DEDCC9 /* Date + Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Ext..swift"; sourceTree = "<group>"; };
+		BC5CA67028A25A7D00DEDCC9 /* Strings + Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings + Ext..swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +91,8 @@
 				BC5CA65228A23D6600DEDCC9 /* Observer.swift */,
 				BC5CA66128A247D000DEDCC9 /* Character.swift */,
 				BC5CA66328A2489800DEDCC9 /* CharacterImage.swift */,
+				BC5CA66928A2548000DEDCC9 /* NetworkManager.swift */,
+				BC5CA66B28A257CC00DEDCC9 /* NetworkError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -90,6 +100,7 @@
 		BC5CA66628A2533400DEDCC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BC5CA66D28A2591000DEDCC9 /* Extensions */,
 				BC5CA64928A23A0300DEDCC9 /* LaunchScreen.storyboard */,
 				BC5CA64728A23A0300DEDCC9 /* Assets.xcassets */,
 				BC5CA64028A239FA00DEDCC9 /* SceneDelegate.swift */,
@@ -112,6 +123,15 @@
 				BC5CA64228A239FA00DEDCC9 /* ViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		BC5CA66D28A2591000DEDCC9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BC5CA66E28A2594200DEDCC9 /* Date + Ext..swift */,
+				BC5CA67028A25A7D00DEDCC9 /* Strings + Ext..swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,12 +214,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC5CA66F28A2594200DEDCC9 /* Date + Ext..swift in Sources */,
 				BC5CA66228A247D000DEDCC9 /* Character.swift in Sources */,
 				BC5CA64328A239FA00DEDCC9 /* ViewController.swift in Sources */,
 				BC5CA65328A23D6600DEDCC9 /* Observer.swift in Sources */,
 				BC5CA63F28A239FA00DEDCC9 /* AppDelegate.swift in Sources */,
+				BC5CA66A28A2548000DEDCC9 /* NetworkManager.swift in Sources */,
 				BC5CA64128A239FA00DEDCC9 /* SceneDelegate.swift in Sources */,
+				BC5CA66C28A257CC00DEDCC9 /* NetworkError.swift in Sources */,
 				BC5CA66028A242AD00DEDCC9 /* Constants.swift in Sources */,
+				BC5CA67128A25A7D00DEDCC9 /* Strings + Ext..swift in Sources */,
 				BC5CA66428A2489800DEDCC9 /* CharacterImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
