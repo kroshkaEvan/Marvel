@@ -120,7 +120,7 @@ class MainViewController: UIViewController {
     }
     
     private func subscribeViewModel() {
-        viewModel.characters.observe(on: self) { [weak self] _ in
+        viewModel.resultCharacters.observe(on: self) { [weak self] _ in
             self?.collectionView.reloadData()
         }
         
@@ -140,19 +140,23 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.characters.value.count
+        viewModel.resultCharacters.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCell.identifier,
                                                       for: indexPath)
         if let cell = cell as? MainCell {
-            let character = viewModel.characters.value[indexPath.row]
+            let character = viewModel.resultCharacters.value[indexPath.row]
             cell.nameLabel.text = character.name
             let cellURL = character.image?.getImageURL(size: .portraitUncanny)
             viewModel.loadImageView(cell.iconCharacterImageView, URL: cellURL)
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.produceCharacterToViewModel(self, indexPath: indexPath.row)
     }
 }
 

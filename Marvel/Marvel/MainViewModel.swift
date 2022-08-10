@@ -14,7 +14,7 @@ enum ViewState {
 }
 
 protocol MainViewModelProtocol: AnyObject {
-    var characters: Observable<[Character]> {get set}
+    var resultCharacters: Observable<[Character]> {get set}
     var viewState: Observable<ViewState> {get set}
     var error: Observable<NetworkError> {get set}
     
@@ -23,7 +23,7 @@ protocol MainViewModelProtocol: AnyObject {
 }
 
 class MainViewModel: NSObject, MainViewModelProtocol {
-    var characters: Observable<[Character]> = Observable([])
+    var resultCharacters: Observable<[Character]> = Observable([])
     var viewState: Observable<ViewState> = Observable(.loading)
     var error: Observable<NetworkError> = Observable(.serverError)
         
@@ -39,7 +39,7 @@ class MainViewModel: NSObject, MainViewModelProtocol {
                 guard let self = self else { return }
                 switch result {
                 case let .success(result):
-                    self.characters.value = result
+                    self.resultCharacters.value = result
                     self.viewState.value = .loaded
                 case let .failure(error):
                     self.error.value = error
@@ -50,9 +50,19 @@ class MainViewModel: NSObject, MainViewModelProtocol {
     }
     
     func loadImageView(_ view: UIImageView, URL: URL?) {
-        if let URL = URL {
-            Nuke.loadImage(with: URL, into: view)
+        DispatchQueue.main.async {
+            if let URL = URL {
+                Nuke.loadImage(with: URL, into: view)
+            }
         }
+    }
+    
+    func produceCharacterToViewModel(_ vc: UIViewController, indexPath: Int) {
+        let viewController = DetailViewController()
+        viewController.viewModel.id = resultCharacters.value[indexPath].id
+        viewController.viewModel.name = resultCharacters.value[indexPath].name
+        let navigationController = UINavigationController(rootViewController: viewController)
+        vc.navigationController?.present(navigationController, animated: true)
     }
 }
 
