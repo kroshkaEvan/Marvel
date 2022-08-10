@@ -20,6 +20,7 @@ protocol MainViewModelProtocol: AnyObject {
     
     func fetchCharacters(with name: String?)
     func loadImageView(_ view: UIImageView, URL: URL?)
+    func produceCharacterToViewModel(_ vc: UIViewController, character: Character)
 }
 
 class MainViewModel: NSObject, MainViewModelProtocol {
@@ -33,7 +34,7 @@ class MainViewModel: NSObject, MainViewModelProtocol {
     }
     
     func fetchCharacters(with name: String? = nil) {
-        self.viewState.value = .loading
+        viewState.value = .loading
         NetworkManager.shared.fetchCharacters(with: name) { [weak self] (result) in
             DispatchQueue.main.async {
                 guard let self = self else { return }
@@ -57,11 +58,12 @@ class MainViewModel: NSObject, MainViewModelProtocol {
         }
     }
     
-    func produceCharacterToViewModel(_ vc: UIViewController, indexPath: Int) {
+    func produceCharacterToViewModel(_ vc: UIViewController, character: Character) {
         let viewController = DetailViewController()
-        viewController.viewModel.id = resultCharacters.value[indexPath].id
-        viewController.viewModel.name = resultCharacters.value[indexPath].name
+        viewController.viewModel.character = character
         let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .fullScreen
+//        vc.navigationController?.pushViewController(navigationController, animated: true)
         vc.navigationController?.present(navigationController, animated: true)
     }
 }

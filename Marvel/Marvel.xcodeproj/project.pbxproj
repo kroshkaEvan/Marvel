@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BC30B0CB28A3F23200467C79 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC30B0CA28A3F23200467C79 /* DetailViewController.swift */; };
 		BC30B0CD28A3F84800467C79 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC30B0CC28A3F84800467C79 /* DetailViewModel.swift */; };
+		BC30B0CF28A4361F00467C79 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC30B0CE28A4361F00467C79 /* DetailCell.swift */; };
 		BC5CA63F28A239FA00DEDCC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA63E28A239FA00DEDCC9 /* AppDelegate.swift */; };
 		BC5CA64128A239FA00DEDCC9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA64028A239FA00DEDCC9 /* SceneDelegate.swift */; };
 		BC5CA64328A239FA00DEDCC9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CA64228A239FA00DEDCC9 /* MainViewController.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		BC30B0CA28A3F23200467C79 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BC30B0CC28A3F84800467C79 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailViewModel.swift; path = Marvel/Views/DetailViewModel.swift; sourceTree = SOURCE_ROOT; };
+		BC30B0CE28A4361F00467C79 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		BC5CA63B28A239FA00DEDCC9 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5CA63E28A239FA00DEDCC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC5CA64028A239FA00DEDCC9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				BC5CA67428A26FED00DEDCC9 /* MainCell.swift */,
 				BC5CA67228A26E4D00DEDCC9 /* LoadingView.swift */,
 				BC30B0CA28A3F23200467C79 /* DetailViewController.swift */,
+				BC30B0CE28A4361F00467C79 /* DetailCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				BC5CA64128A239FA00DEDCC9 /* SceneDelegate.swift in Sources */,
 				BC5CA66C28A257CC00DEDCC9 /* NetworkError.swift in Sources */,
 				BC5CA66028A242AD00DEDCC9 /* Constants.swift in Sources */,
+				BC30B0CF28A4361F00467C79 /* DetailCell.swift in Sources */,
 				BC30B0CB28A3F23200467C79 /* DetailViewController.swift in Sources */,
 				BC5CA67128A25A7D00DEDCC9 /* Strings + Ext..swift in Sources */,
 				BC5CA66428A2489800DEDCC9 /* CharacterImage.swift in Sources */,

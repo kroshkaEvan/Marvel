@@ -7,47 +7,28 @@
 
 import Foundation
 import UIKit
+import Nuke
 
 protocol DetailViewModelProtocol: AnyObject {
-    var resultCharacters: Observable<[Character]> {get set}
     var resultComics: Observable<[Character]> {get set}
     var viewState: Observable<ViewState> {get set}
     var error: Observable<NetworkError> {get set}
     
-    func fetchCharacters()
-    func fetchComics(with id: String)
+    func fetchComics()
+    func loadImageView(_ view: UIImageView, URL: URL?)
+    
 }
 
 class DetailViewModel: NSObject, DetailViewModelProtocol {
-    var resultCharacters: Observable<[Character]> = Observable([])
     var resultComics: Observable<[Character]> = Observable([])
     var viewState: Observable<ViewState> = Observable(.loading)
     var error: Observable<NetworkError> = Observable(.serverError)
-    var id: Int?
-    var name: String?
+    var character: Character?
     
-    func fetchCharacters() {
-        guard let name = name else { return }
+    func fetchComics() {
         self.viewState.value = .loading
-        NetworkManager.shared.fetchCharacters(with: name) { [weak self] (result) in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                switch result {
-                case let .success(result):
-                    self.resultCharacters.value = result
-                    guard let id = self.id else { return }
-                    self.fetchComics(with: String(describing: id))
-                    self.viewState.value = .loaded
-                case let .failure(error):
-                    self.error.value = error
-                    self.viewState.value = .failed
-                }
-            }
-        }
-    }
-    
-    func fetchComics(with id: String) {
-        NetworkManager.shared.fetchComics(with: id) { [weak self] (result) in
+        guard let character = character else { return }
+        NetworkManager.shared.fetchComics(with: String(describing: character.id)) { [weak self] (result) in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 switch result {
@@ -58,6 +39,16 @@ class DetailViewModel: NSObject, DetailViewModelProtocol {
                     self.error.value = error
                     self.viewState.value = .failed
                 }
+            }
+        }
+    }
+    
+    func loadImageView(_ view: UIImageView, URL: URL?) {
+        self.viewState.value = .loading
+        DispatchQueue.main.async {
+            if let URL = URL {
+                Nuke.loadImage(with: URL, into: view)
+                self.viewState.value = .loaded
             }
         }
     }

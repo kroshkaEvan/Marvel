@@ -156,7 +156,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.produceCharacterToViewModel(self, indexPath: indexPath.row)
+        collectionView.deselectItem(at: indexPath,
+                                    animated: true)
+        let character = viewModel.resultCharacters.value[indexPath.row]
+        viewModel.produceCharacterToViewModel(self, character: character)
     }
 }
 
