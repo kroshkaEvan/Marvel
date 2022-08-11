@@ -22,6 +22,7 @@ class DetailViewController: UIViewController {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.textColor = .white
@@ -61,14 +62,19 @@ class DetailViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupLayout() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                                            target: self,
+                                                            action: #selector(didTapBack))
+        navigationItem.leftBarButtonItem?.tintColor = .white
+
         view.backgroundColor = .red
         [stackView, loadingView].forEach { view.addSubview($0) }
         
         stackView.snp.makeConstraints { make in
-          make.leading.equalToSuperview()
-          make.top.equalToSuperview()
-          make.trailing.equalToSuperview()
-          make.bottom.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.75)
+            make.height.equalToSuperview().multipliedBy(0.65)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.centerX.equalToSuperview()
         }
         loadingView.snp.makeConstraints { make in
           make.leading.equalToSuperview()
@@ -122,5 +128,9 @@ class DetailViewController: UIViewController {
                 self.showErrorAlertView()
             }
         }
+    }
+    
+    @objc private func didTapBack() {
+        self.dismiss(animated: true)
     }
 }
