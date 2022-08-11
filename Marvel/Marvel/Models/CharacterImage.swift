@@ -16,7 +16,7 @@ enum SizeImage: String {
     case portraitUncanny = "portrait_uncanny" //300x450px
 }
 
-struct CharacterImage: Decodable {
+struct CharacterImage: Codable {
     private let path: String?
     private let format: String?
     

@@ -24,14 +24,21 @@ protocol MainViewModelProtocol: AnyObject {
 }
 
 class MainViewModel: NSObject, MainViewModelProtocol {
+    
+    // MARK: - Properties
+
     var resultCharacters: Observable<[Character]> = Observable([])
     var viewState: Observable<ViewState> = Observable(.loading)
     var error: Observable<NetworkError> = Observable(.serverError)
-        
+    
+    // MARK: - Initializer
+    
     override init() {
         super .init()
         fetchCharacters()
     }
+    
+    // MARK: - Methods
     
     func fetchCharacters(with name: String? = nil) {
         viewState.value = .loading
@@ -63,7 +70,6 @@ class MainViewModel: NSObject, MainViewModelProtocol {
         viewController.viewModel.character = character
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.modalPresentationStyle = .fullScreen
-//        vc.navigationController?.pushViewController(navigationController, animated: true)
         vc.navigationController?.present(navigationController, animated: true)
     }
 }

@@ -9,6 +9,9 @@ import SnapKit
 import UIKit
 
 class LoadingView: UIView {
+    
+    // MARK: - Private properties
+
     private lazy var loadingActivityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         indicator.style = .large
@@ -26,6 +29,8 @@ class LoadingView: UIView {
         return blurEffectView
     }()
     
+    // MARK: - Initializers
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -34,6 +39,8 @@ class LoadingView: UIView {
         super.init(frame: .zero)
         setupLayout()
     }
+    
+    // MARK: - Private Methods
     
     private func setupLayout() {
         self.addSubview(blurEffectView)

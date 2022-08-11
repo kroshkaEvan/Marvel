@@ -9,6 +9,9 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
+    
+    // MARK: - Private properties
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cellsSpacing = CGFloat(10)
@@ -17,7 +20,7 @@ class MainViewController: UIViewController {
                                            bottom: cellsSpacing,
                                            right: cellsSpacing)
         var numberOfItemsInSection = 2
-        // for iPad
+        // for iPad layout
         if view.frame.size.width > 500 {
             numberOfItemsInSection = 5
         }
@@ -58,7 +61,9 @@ class MainViewController: UIViewController {
     }()
     
     private let viewModel = MainViewModel()
-    
+        
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -68,6 +73,8 @@ class MainViewController: UIViewController {
         setupLayout()
         subscribeViewModel()
     }
+    
+    // MARK: - Private Methods
     
     private func setupLayout() {
         configureNavigation()
@@ -106,7 +113,15 @@ class MainViewController: UIViewController {
 
     
     private func showErrorAlertView() {
-        
+        let message = "\(viewModel.error.value.localizedDescription) \nTry again"
+        let alertLogOut = UIAlertController(title: "Oops!",
+                                            message: message,
+                                            preferredStyle: .alert)
+        alertLogOut.addAction(UIAlertAction(title: "OK",
+                                            style: .cancel,
+                                            handler: nil))
+        viewModel.fetchCharacters()
+        present(alertLogOut, animated: true)
     }
     
     private func showLoadingView() {

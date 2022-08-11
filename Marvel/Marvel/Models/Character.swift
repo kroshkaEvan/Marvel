@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Character: Decodable {
+struct Character: Codable {
     let id: Int?
     var name: String?
     let description: String?
@@ -25,7 +25,7 @@ struct Character: Decodable {
     }
 }
 
-struct Characters: Decodable {
+struct Characters: Codable {
     let count: Int?
     let list: [Character]
 
@@ -35,14 +35,14 @@ struct Characters: Decodable {
     }
 }
 
-struct Comics: Decodable {
+struct Comics: Codable {
     let items: [ComicsName]?
 }
 
-struct ComicsName: Decodable {
+struct ComicsName: Codable {
     let name: String?
 }
 
-struct DataModel: Decodable {
+struct DataModel: Codable {
     let data: Characters?
 }

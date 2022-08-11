@@ -20,10 +20,22 @@ protocol DetailViewModelProtocol: AnyObject {
 }
 
 class DetailViewModel: NSObject, DetailViewModelProtocol {
+    
+    // MARK: - Properties
+    
     var resultComics: Observable<[Character]> = Observable([])
     var viewState: Observable<ViewState> = Observable(.loading)
     var error: Observable<NetworkError> = Observable(.serverError)
     var character: Character?
+    
+    // MARK: - Initializer
+    
+    override init() {
+        super .init()
+        fetchComics()
+    }
+    
+    // MARK: - Methods
     
     func fetchComics() {
         self.viewState.value = .loading

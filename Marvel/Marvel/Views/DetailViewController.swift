@@ -9,6 +9,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    // MARK: - Private properties
+
     private lazy var iconCharacterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -43,13 +45,20 @@ class DetailViewController: UIViewController {
         return loadingView
     }()
     
+    // MARK: - Public properties
+    
     let viewModel = DetailViewModel()
+    
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         subscribeViewModel()
         setupLayout()
+        fetchCharacter()
     }
+    
+    // MARK: - Private Methods
     
     private func setupLayout() {
         view.backgroundColor = .red
@@ -90,7 +99,15 @@ class DetailViewController: UIViewController {
     }
     
     private func showErrorAlertView() {
-        
+        let message = "\(viewModel.error.value.localizedDescription) \nTry again"
+        let alertLogOut = UIAlertController(title: "Oops!",
+                                            message: message,
+                                            preferredStyle: .alert)
+        alertLogOut.addAction(UIAlertAction(title: "OK",
+                                            style: .cancel,
+                                            handler: nil))
+        viewModel.fetchComics()
+        present(alertLogOut, animated: true)
     }
     
     private func subscribeViewModel() {
