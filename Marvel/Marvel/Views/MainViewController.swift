@@ -11,10 +11,10 @@ import SnapKit
 class MainViewController: UIViewController {
     
     // MARK: - Private properties
-
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        let cellsSpacing = CGFloat(10)
+        let cellsSpacing = CGFloat(20)
         layout.sectionInset = UIEdgeInsets(top: cellsSpacing ,
                                            left: cellsSpacing ,
                                            bottom: cellsSpacing,
@@ -38,7 +38,7 @@ class MainViewController: UIViewController {
                                               collectionViewLayout: layout)
         collectionView.register(MainCell.self,
                                 forCellWithReuseIdentifier: MainCell.identifier)
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -48,8 +48,8 @@ class MainViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = Constants.Strings.placeholder
         searchController.searchBar.autocapitalizationType = .none
-        searchController.searchBar.tintColor = .white
-        searchController.searchBar.backgroundColor = .red
+        searchController.searchBar.tintColor = .red
+        searchController.searchBar.backgroundColor = .white
         return searchController
     }()
     
@@ -61,9 +61,9 @@ class MainViewController: UIViewController {
     }()
     
     private let viewModel = MainViewModel()
-        
+    
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -83,21 +83,25 @@ class MainViewController: UIViewController {
         view.bringSubviewToFront(loadingView)
         
         collectionView.snp.makeConstraints { make in
-          make.leading.equalToSuperview()
-          make.top.equalToSuperview()
-          make.trailing.equalToSuperview()
-          make.bottom.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.top.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         loadingView.snp.makeConstraints { make in
-          make.leading.equalToSuperview()
-          make.top.equalToSuperview()
-          make.trailing.equalToSuperview()
-          make.bottom.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
     
     private func configureNavigation() {
-        navigationController?.navigationBar.backgroundColor = .red
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh,
+                                                            target: self,
+                                                            action: #selector(didTapRefresh))
+        navigationItem.rightBarButtonItem?.tintColor = .red
         let imageContainer = UIView(frame: CGRect(x: 0, y: 0, width: 270, height: 50))
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 270, height: 50))
         imageView.contentMode = .scaleAspectFit
@@ -106,11 +110,9 @@ class MainViewController: UIViewController {
         imageContainer.addSubview(imageView)
         navigationItem.titleView = imageContainer
         navigationItem.searchController = searchController
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.definesPresentationContext = true
+        navigationController?.navigationBar.barTintColor = .white
         navigationItem.hidesSearchBarWhenScrolling = false
     }
-
     
     private func showErrorAlertView() {
         let message = "\(viewModel.error.value.localizedDescription) \nTry again"
@@ -120,7 +122,6 @@ class MainViewController: UIViewController {
         alertLogOut.addAction(UIAlertAction(title: "OK",
                                             style: .cancel,
                                             handler: nil))
-        viewModel.fetchCharacters()
         present(alertLogOut, animated: true)
     }
     
@@ -151,6 +152,11 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
+    @objc func didTapRefresh() {
+        subscribeViewModel()
+        viewModel.fetchCharacters()
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -164,8 +170,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         if let cell = cell as? MainCell {
             let character = viewModel.resultCharacters.value[indexPath.row]
             cell.nameLabel.text = character.name
-            let cellURL = character.image?.getImageURL(size: .portraitUncanny)
-            viewModel.loadImageView(cell.iconCharacterImageView, URL: cellURL)
+            character.image?.getImageView(cell.iconCharacterImageView, size: .portrait)
         }
         return cell
     }

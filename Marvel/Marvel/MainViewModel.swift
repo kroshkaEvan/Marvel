@@ -19,7 +19,6 @@ protocol MainViewModelProtocol: AnyObject {
     var error: Observable<NetworkError> {get set}
     
     func fetchCharacters(with name: String?)
-    func loadImageView(_ view: UIImageView, URL: URL?)
     func produceCharacterToViewModel(_ vc: UIViewController, character: Character)
 }
 
@@ -57,17 +56,14 @@ class MainViewModel: NSObject, MainViewModelProtocol {
         }
     }
     
-    func loadImageView(_ view: UIImageView, URL: URL?) {
-        DispatchQueue.main.async {
-            if let URL = URL {
-                Nuke.loadImage(with: URL, into: view)
-            }
-        }
-    }
-    
     func produceCharacterToViewModel(_ vc: UIViewController, character: Character) {
         let viewController = DetailViewController()
-        viewController.viewModel.character = character
+        let detailViewModel = viewController.viewModel
+        detailViewModel.character = character
+//        if let id = detailViewModel.character?.id {
+//            print(id)
+//            detailViewModel.fetchComics(with: String(id))
+//        }
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.modalPresentationStyle = .fullScreen
         vc.navigationController?.present(navigationController, animated: true)

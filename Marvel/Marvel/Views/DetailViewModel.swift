@@ -14,15 +14,12 @@ protocol DetailViewModelProtocol: AnyObject {
     var viewState: Observable<ViewState> {get set}
     var error: Observable<NetworkError> {get set}
     
-    func fetchComics()
-    func loadImageView(_ view: UIImageView, URL: URL?)
-    
+    func fetchComics(with id: String)
 }
 
 class DetailViewModel: NSObject, DetailViewModelProtocol {
     
     // MARK: - Properties
-    
     var resultComics: Observable<[Character]> = Observable([])
     var viewState: Observable<ViewState> = Observable(.loading)
     var error: Observable<NetworkError> = Observable(.serverError)
@@ -30,17 +27,12 @@ class DetailViewModel: NSObject, DetailViewModelProtocol {
     
     // MARK: - Initializer
     
-    override init() {
-        super .init()
-        fetchComics()
-    }
     
     // MARK: - Methods
     
-    func fetchComics() {
+    func fetchComics(with id: String) {
         self.viewState.value = .loading
-        guard let character = character else { return }
-        NetworkManager.shared.fetchComics(with: String(describing: character.id)) { [weak self] (result) in
+        NetworkManager.shared.fetchComics(with: id) { [weak self] (result) in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 switch result {
@@ -55,13 +47,4 @@ class DetailViewModel: NSObject, DetailViewModelProtocol {
         }
     }
     
-    func loadImageView(_ view: UIImageView, URL: URL?) {
-        self.viewState.value = .loading
-        DispatchQueue.main.async {
-            if let URL = URL {
-                Nuke.loadImage(with: URL, into: view)
-                self.viewState.value = .loaded
-            }
-        }
-    }
 }

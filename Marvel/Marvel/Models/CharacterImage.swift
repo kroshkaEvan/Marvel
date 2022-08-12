@@ -6,17 +6,15 @@
 //
 
 import UIKit
+import Nuke
 
 enum SizeImage: String {
-    case standardMedium = "standard_medium" // 100x100px
-    case standardLarge = "standard_large" // 140x140px
-    case landscapeLarge = "landscape_large" // 190x140px
-    case landscapeMedium = "landscape_medium" // 175x130px
-    case portraitMedium = "portrait_medium" // 100x150px
-    case portraitUncanny = "portrait_uncanny" //300x450px
+    case standard = "standard_fantastic" // 250x250px
+    case landscape = "landscape_incredible" // 464x261px
+    case portrait = "portrait_uncanny" //300x450px
 }
 
-struct CharacterImage: Codable {
+struct CharacterImage: Decodable {
     private let path: String?
     private let format: String?
     
@@ -25,9 +23,11 @@ struct CharacterImage: Codable {
         case format = "extension"
     }
     
-    func getImageURL(size: SizeImage) -> URL? {
+    func getImageView(_ imageView: UIImageView, size: SizeImage) {
         guard let path = path,
-              let format = format else { return nil }
-        return URL(string: "\(path)/\(size.rawValue).\(format)")
+              let format = format else { return }
+        if let url = URL(string: "\(path)/\(size.rawValue).\(format)") {
+            Nuke.loadImage(with: url, into: imageView)
+        }
     }
 }

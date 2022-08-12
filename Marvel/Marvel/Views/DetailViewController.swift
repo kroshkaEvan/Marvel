@@ -13,30 +13,22 @@ class DetailViewController: UIViewController {
 
     private lazy var iconCharacterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 10
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private lazy var nameLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.5
-        label.textColor = .white
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.textColor = UIColor.white
+        label.numberOfLines = .zero
+        label.sizeToFit()
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
-    
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [iconCharacterImageView,
-                                                       nameLabel])
-        stackView.axis = .vertical
-//        stackView.spacing = 3
-        stackView.distribution = .fillProportionally
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
     }()
     
     private lazy var loadingView: LoadingView = {
@@ -44,6 +36,16 @@ class DetailViewController: UIViewController {
         loadingView.layer.zPosition = 999
         loadingView.translatesAutoresizingMaskIntoConstraints = false
         return loadingView
+    }()
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView.init(frame: CGRect.zero)
+        tableView.backgroundColor = .white
+        tableView.layer.cornerRadius = 10
+        tableView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        tableView.separatorStyle = .none
+        tableView.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifier)
+        return tableView
     }()
     
     // MARK: - Public properties
@@ -54,6 +56,8 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         subscribeViewModel()
         setupLayout()
         fetchCharacter()
@@ -62,36 +66,57 @@ class DetailViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupLayout() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
-                                                            target: self,
-                                                            action: #selector(didTapBack))
-        navigationItem.leftBarButtonItem?.tintColor = .white
-
-        view.backgroundColor = .red
-        [stackView, loadingView].forEach { view.addSubview($0) }
-        
-        stackView.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.75)
-            make.height.equalToSuperview().multipliedBy(0.65)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+        configureNavigation()
+        view.backgroundColor = .white
+        [iconCharacterImageView, descriptionLabel, loadingView, tableView].forEach { view.addSubview($0) }
+        iconCharacterImageView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(view.frame.size.width)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.centerX.equalToSuperview()
         }
+        descriptionLabel.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(iconCharacterImageView.frame.size.height / 2)
+            make.top.equalTo(iconCharacterImageView.snp.centerY)
+            make.centerX.equalToSuperview()
+        }
+        descriptionLabel.bringSubviewToFront(view)
         loadingView.snp.makeConstraints { make in
           make.leading.equalToSuperview()
           make.top.equalToSuperview()
           make.trailing.equalToSuperview()
           make.bottom.equalToSuperview()
         }
+        tableView.snp.makeConstraints { make in
+          make.leading.equalToSuperview()
+        make.top.equalTo(iconCharacterImageView.snp.bottom)
+          make.trailing.equalToSuperview()
+          make.bottom.equalToSuperview()
+        }
+    }
+    
+    private func configureNavigation() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                                            target: self,
+                                                            action: #selector(didTapBack))
+        navigationItem.leftBarButtonItem?.tintColor = .red
+        navigationController?.navigationBar.barTintColor = .white
     }
     
     private func fetchCharacter() {
         // image
-        let URL = viewModel.character?.image?.getImageURL(size: .portraitUncanny)
-        viewModel.loadImageView(self.iconCharacterImageView, URL: URL)
-        // label
-        nameLabel.text = viewModel.character?.name
-        // tableView
-        
+        viewModel.character?.image?.getImageView(self.iconCharacterImageView, size: .standard)
+        // labels
+        navigationController?.navigationBar.topItem?.title = viewModel.character?.name
+        descriptionLabel.text = viewModel.character?.description
+        fetchComics()
+    }
+    
+    private func fetchComics() {
+        if let id = viewModel.character?.id {
+            viewModel.fetchComics(with: String(id))
+        }
     }
     
     private func showLoadingView() {
@@ -112,7 +137,6 @@ class DetailViewController: UIViewController {
         alertLogOut.addAction(UIAlertAction(title: "OK",
                                             style: .cancel,
                                             handler: nil))
-        viewModel.fetchComics()
         present(alertLogOut, animated: true)
     }
     
@@ -123,6 +147,7 @@ class DetailViewController: UIViewController {
             case .loading:
                 self.showLoadingView()
             case .loaded:
+                self.tableView.reloadData()
                 self.hideLoadingView()
             case .failed:
                 self.showErrorAlertView()
@@ -132,5 +157,29 @@ class DetailViewController: UIViewController {
     
     @objc private func didTapBack() {
         self.dismiss(animated: true)
+    }
+}
+
+extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.resultComics.value.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier,
+                                                      for: indexPath)
+        if let cell = cell as? DetailCell {
+            let title = self.viewModel.character?.comics?.items?[indexPath.row].name
+            let description = self.viewModel.resultComics.value[indexPath.row].description
+            cell.titleLabel.text = title
+            cell.descriptionLabel.text = description
+            self.viewModel.resultComics.value[indexPath.row].image?.getImageView(cell.backgroundImageView, size: .landscape)
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 350
     }
 }

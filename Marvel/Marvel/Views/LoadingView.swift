@@ -15,14 +15,14 @@ class LoadingView: UIView {
     private lazy var loadingActivityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         indicator.style = .large
-        indicator.color = .white
+        indicator.color = .red
         indicator.startAnimating()
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
     
     private lazy var blurEffectView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .systemThickMaterial)
+        let blurEffect = UIBlurEffect(style: .systemMaterialLight)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.alpha = 0.5
         blurEffectView.translatesAutoresizingMaskIntoConstraints = false
