@@ -116,7 +116,7 @@ class MainViewController: UIViewController {
     }
     
     private func showErrorAlertView() {
-        let message = "\(viewModel.error.value.localizedDescription) \nTry again"
+        let message = "\(viewModel.error.value.localizedDescription) \nRestart the app"
         let alertLogOut = UIAlertController(title: "Oops!",
                                             message: message,
                                             preferredStyle: .alert)

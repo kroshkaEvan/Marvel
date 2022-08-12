@@ -10,6 +10,8 @@ import UIKit
 class MainCell: UICollectionViewCell {
     static let identifier = "MainCell"
     
+    // MARK: - Public properties
+
     lazy var iconCharacterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -34,6 +36,8 @@ class MainCell: UICollectionViewCell {
         return label
     }()
     
+    // MARK: - Private properties
+    
     private lazy var gradienLayer: CAGradientLayer = {
         let gradienLayer = CAGradientLayer()
         gradienLayer.colors = [UIColor.clear.cgColor,
@@ -41,6 +45,8 @@ class MainCell: UICollectionViewCell {
         gradienLayer.locations = [0.5, 1.5]
         return gradienLayer
     }()
+    
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -71,6 +77,8 @@ class MainCell: UICollectionViewCell {
         super.touchesCancelled(touches, with: event)
         animateCell(isHighlighted: false)
     }
+    
+    // MARK: - Private Methods
     
     private func setupLayout() {
         self.backgroundColor = .lightGray
