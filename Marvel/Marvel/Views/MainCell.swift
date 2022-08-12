@@ -105,7 +105,7 @@ class MainCell: UICollectionViewCell {
             backgroundLoop = 0
         }
         if isHighlighted {
-            UIView.animate(withDuration: 0.45,
+            UIView.animate(withDuration: 0.4,
                            delay: 0,
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 0,
@@ -116,7 +116,7 @@ class MainCell: UICollectionViewCell {
                 self.nameLabel.transform = .init(translationX: 0, y: -60)
             }, completion: completion)
         } else {
-            UIView.animate(withDuration: 0.45,
+            UIView.animate(withDuration: 0.4,
                            delay: 0,
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 0,

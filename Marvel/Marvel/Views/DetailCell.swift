@@ -13,12 +13,13 @@ class DetailCell: UITableViewCell {
     // MARK: - Private properties
     
     private lazy var blurEffectView: UIVisualEffectView = {
-        let view = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.layer.cornerRadius = 30
-        view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.layer.cornerRadius = 30
+        blurEffectView.clipsToBounds = true
+        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
+        return blurEffectView
     }()
     
     // MARK: - Public properties
@@ -64,7 +65,7 @@ class DetailCell: UITableViewCell {
         label.textColor = .white
         label.numberOfLines = .zero
         label.sizeToFit()
-        label.minimumScaleFactor = 0.15
+        label.minimumScaleFactor = 0.5
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false

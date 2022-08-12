@@ -33,9 +33,9 @@ class NetworkManager {
             .validate(statusCode: 200..<299)
             .validate(contentType: ["application/json"])
             .responseData { (responseData) in
-                guard let responce = responseData.response
+                guard let response = responseData.response
                 else { return completion(.failure(.serverError)) }
-                if responce.statusCode >= 300 {
+                if response.statusCode >= 300 {
                     completion(.failure(.badURL))
                 }
             }
@@ -62,9 +62,9 @@ class NetworkManager {
             .validate(statusCode: 200..<299)
             .validate(contentType: ["application/json"])
             .responseData { (responseData) in
-                guard let responce = responseData.response
+                guard let response = responseData.response
                 else { return completion(.failure(.serverError)) }
-                if responce.statusCode >= 300 {
+                if response.statusCode >= 300 {
                     completion(.failure(.badURL))
                 }
             }
