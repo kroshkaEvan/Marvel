@@ -30,12 +30,12 @@ class NetworkManager {
                    method: .get,
                    parameters: parameters,
                    encoding: URLEncoding.default)
-            .validate(statusCode: 200..<499)
+            .validate(statusCode: 200..<299)
             .validate(contentType: ["application/json"])
             .responseData { (responseData) in
                 guard let responce = responseData.response
                 else { return completion(.failure(.serverError)) }
-                if responce.statusCode >= 500 {
+                if responce.statusCode >= 300 {
                     completion(.failure(.badURL))
                 }
             }
@@ -59,12 +59,12 @@ class NetworkManager {
                    method: .get,
                    parameters: parameters,
                    encoding: URLEncoding.default)
-            .validate(statusCode: 200..<499)
+            .validate(statusCode: 200..<299)
             .validate(contentType: ["application/json"])
             .responseData { (responseData) in
                 guard let responce = responseData.response
                 else { return completion(.failure(.serverError)) }
-                if responce.statusCode >= 500 {
+                if responce.statusCode >= 300 {
                     completion(.failure(.badURL))
                 }
             }

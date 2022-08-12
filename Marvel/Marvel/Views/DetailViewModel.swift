@@ -25,9 +25,6 @@ class DetailViewModel: NSObject, DetailViewModelProtocol {
     var error: Observable<NetworkError> = Observable(.serverError)
     var character: Character?
     
-    // MARK: - Initializer
-    
-    
     // MARK: - Methods
     
     func fetchComics(with id: String) {

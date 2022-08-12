@@ -60,10 +60,6 @@ class MainViewModel: NSObject, MainViewModelProtocol {
         let viewController = DetailViewController()
         let detailViewModel = viewController.viewModel
         detailViewModel.character = character
-//        if let id = detailViewModel.character?.id {
-//            print(id)
-//            detailViewModel.fetchComics(with: String(id))
-//        }
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.modalPresentationStyle = .fullScreen
         vc.navigationController?.present(navigationController, animated: true)

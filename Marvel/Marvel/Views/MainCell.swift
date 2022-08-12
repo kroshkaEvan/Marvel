@@ -23,13 +23,12 @@ class MainCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 20, weight: .black)
-        label.textColor = UIColor.white
+        label.textColor = .white
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 2
         label.sizeToFit()
-        label.setContentCompressionResistancePriority(
-            .defaultHigh,
-            for: .horizontal)
+        label.setContentCompressionResistancePriority(.defaultHigh,
+                                                      for: .horizontal)
         label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -37,7 +36,8 @@ class MainCell: UICollectionViewCell {
     
     private lazy var gradienLayer: CAGradientLayer = {
         let gradienLayer = CAGradientLayer()
-        gradienLayer.colors = [UIColor.clear.cgColor, UIColor.red.cgColor]
+        gradienLayer.colors = [UIColor.clear.cgColor,
+                               UIColor.red.cgColor]
         gradienLayer.locations = [0.5, 1.5]
         return gradienLayer
     }()
@@ -52,8 +52,9 @@ class MainCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
-        iconCharacterImageView.layer.addSublayer(gradienLayer)
+        super.layoutSubviews()
         gradienLayer.frame = iconCharacterImageView.bounds
+        iconCharacterImageView.layer.addSublayer(gradienLayer)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

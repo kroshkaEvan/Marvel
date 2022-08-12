@@ -30,7 +30,8 @@ class MainViewController: UIViewController {
         let cellHeight = cellWidth * 1.7
         layout.minimumLineSpacing = cellsSpacing
         layout.minimumInteritemSpacing = cellsSpacing
-        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        layout.itemSize = CGSize(width: cellWidth,
+                                 height: cellHeight)
         let sectionHeight = CGFloat(4)
         layout.headerReferenceSize = CGSize(width: self.view.frame.size.width,
                                             height: sectionHeight)
@@ -45,11 +46,11 @@ class MainViewController: UIViewController {
     
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = Constants.Strings.placeholder
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.tintColor = .red
         searchController.searchBar.backgroundColor = .white
+        searchController.obscuresBackgroundDuringPresentation = false
         return searchController
     }()
     
@@ -170,7 +171,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         if let cell = cell as? MainCell {
             let character = viewModel.resultCharacters.value[indexPath.row]
             cell.nameLabel.text = character.name
-            character.image?.getImageView(cell.iconCharacterImageView, size: .portrait)
+            character.image?.getImageView(cell.iconCharacterImageView,
+                                          size: .portrait)
         }
         return cell
     }

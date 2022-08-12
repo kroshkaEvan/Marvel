@@ -10,25 +10,34 @@ import UIKit
 class DetailViewController: UIViewController {
     
     // MARK: - Private properties
-
+    
     private lazy var iconCharacterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 10
+        imageView.layer.cornerRadius = 30
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
-        label.font = .systemFont(ofSize: 20, weight: .medium)
-        label.textColor = UIColor.white
-        label.numberOfLines = .zero
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 18,
+                                 weight: .semibold)
+        label.textColor = .white
+        label.numberOfLines = 12
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private lazy var gradienLayer: CAGradientLayer = {
+        let gradienLayer = CAGradientLayer()
+        gradienLayer.colors = [UIColor.clear.cgColor,
+                               UIColor.black.cgColor]
+        gradienLayer.locations = [0.3, 1.0]
+        return gradienLayer
     }()
     
     private lazy var loadingView: LoadingView = {
@@ -44,7 +53,8 @@ class DetailViewController: UIViewController {
         tableView.layer.cornerRadius = 10
         tableView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         tableView.separatorStyle = .none
-        tableView.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifier)
+        tableView.register(DetailCell.self,
+                           forCellReuseIdentifier: DetailCell.identifier)
         return tableView
     }()
     
@@ -53,7 +63,7 @@ class DetailViewController: UIViewController {
     let viewModel = DetailViewModel()
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -63,6 +73,12 @@ class DetailViewController: UIViewController {
         fetchCharacter()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        gradienLayer.frame = iconCharacterImageView.bounds
+        iconCharacterImageView.layer.addSublayer(gradienLayer)
+    }
+    
     // MARK: - Private Methods
     
     private func setupLayout() {
@@ -70,44 +86,42 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         [iconCharacterImageView, descriptionLabel, loadingView, tableView].forEach { view.addSubview($0) }
         iconCharacterImageView.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.height.equalTo(view.frame.size.width)
+            make.width.equalToSuperview().multipliedBy(0.95)
+            make.height.equalTo(view.frame.size.width * 0.85)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.centerX.equalToSuperview()
         }
         descriptionLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.height.equalTo(iconCharacterImageView.frame.size.height / 2)
-            make.top.equalTo(iconCharacterImageView.snp.centerY)
+            make.width.equalToSuperview().multipliedBy(0.92)
+            make.bottom.equalTo(iconCharacterImageView.snp.bottom).offset(-10)
             make.centerX.equalToSuperview()
         }
         descriptionLabel.bringSubviewToFront(view)
         loadingView.snp.makeConstraints { make in
-          make.leading.equalToSuperview()
-          make.top.equalToSuperview()
-          make.trailing.equalToSuperview()
-          make.bottom.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.top.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         tableView.snp.makeConstraints { make in
-          make.leading.equalToSuperview()
-        make.top.equalTo(iconCharacterImageView.snp.bottom)
-          make.trailing.equalToSuperview()
-          make.bottom.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.top.equalTo(iconCharacterImageView.snp.bottom)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
     
     private func configureNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
-                                                            target: self,
-                                                            action: #selector(didTapBack))
+                                                           target: self,
+                                                           action: #selector(didTapBack))
         navigationItem.leftBarButtonItem?.tintColor = .red
         navigationController?.navigationBar.barTintColor = .white
     }
     
     private func fetchCharacter() {
-        // image
-        viewModel.character?.image?.getImageView(self.iconCharacterImageView, size: .standard)
-        // labels
+        viewModel.character?.image?.getImageView(self.iconCharacterImageView,
+                                                 size: .standard)
         navigationController?.navigationBar.topItem?.title = viewModel.character?.name
         descriptionLabel.text = viewModel.character?.description
         fetchComics()
@@ -168,18 +182,21 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier,
-                                                      for: indexPath)
+                                                 for: indexPath)
         if let cell = cell as? DetailCell {
             let title = self.viewModel.character?.comics?.items?[indexPath.row].name
             let description = self.viewModel.resultComics.value[indexPath.row].description
             cell.titleLabel.text = title
             cell.descriptionLabel.text = description
-            self.viewModel.resultComics.value[indexPath.row].image?.getImageView(cell.backgroundImageView, size: .landscape)
+            self.viewModel.resultComics.value[indexPath.row].image?.getImageView(cell.backgroundImageView,
+                                                                                 size: .landscape)
+            self.viewModel.resultComics.value[indexPath.row].image?.getImageView(cell.comicsImageView,
+                                                                                 size: .portrait)
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350
+        return 240
     }
 }
