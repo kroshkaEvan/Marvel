@@ -30,5 +30,11 @@ class Constants {
     
     class Image {
         static let backgroundOptionsImage = UIImage(named: "shield")
+        static let close = UIImage(named: "xmen")
+    }
+    
+    class Font {
+        static let titleFont = UIFont(name: "HeroesAssembleAcademy",
+                             size: 30)
     }
 }

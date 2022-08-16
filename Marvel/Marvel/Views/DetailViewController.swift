@@ -112,11 +112,14 @@ class DetailViewController: UIViewController {
     }
     
     private func configureNavigation() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close,
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: Constants.Image.close?.withRenderingMode(.alwaysOriginal),
+                                                           style: .done,
                                                            target: self,
                                                            action: #selector(didTapBack))
-        navigationItem.leftBarButtonItem?.tintColor = .red
         navigationController?.navigationBar.barTintColor = .white
+        let attributes = [NSAttributedString.Key.font:
+                            Constants.Font.titleFont ?? UIFont.systemFont(ofSize: 30, weight: .black)]
+        UINavigationBar.appearance().titleTextAttributes = attributes
     }
     
     private func fetchCharacter() {
@@ -125,6 +128,16 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = viewModel.character?.name
         descriptionLabel.text = viewModel.character?.description
         fetchComics()
+        checkFont()
+    }
+    
+    func checkFont() {
+        
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("Family: \(family) Font names: \(names)")
+        }
+        
     }
     
     private func fetchComics() {
