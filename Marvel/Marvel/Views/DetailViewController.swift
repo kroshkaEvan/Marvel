@@ -112,7 +112,7 @@ class DetailViewController: UIViewController {
     }
     
     private func configureNavigation() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close,
                                                            target: self,
                                                            action: #selector(didTapBack))
         navigationItem.leftBarButtonItem?.tintColor = .red
@@ -185,13 +185,14 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
                                                  for: indexPath)
         if let cell = cell as? DetailCell {
             let title = self.viewModel.character?.comics?.items?[indexPath.row].name
-            let description = self.viewModel.resultComics.value[indexPath.row].description
+            let resultComics = self.viewModel.resultComics.value[indexPath.row]
+            let description = resultComics.description
+            resultComics.image?.getImageView(cell.backgroundImageView,
+                                             size: .landscape)
+            resultComics.image?.getImageView(cell.comicsImageView,
+                                             size: .portrait)
             cell.titleLabel.text = title
             cell.descriptionLabel.text = description
-            self.viewModel.resultComics.value[indexPath.row].image?.getImageView(cell.backgroundImageView,
-                                                                                 size: .landscape)
-            self.viewModel.resultComics.value[indexPath.row].image?.getImageView(cell.comicsImageView,
-                                                                                 size: .portrait)
         }
         return cell
     }

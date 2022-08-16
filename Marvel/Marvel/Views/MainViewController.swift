@@ -155,7 +155,6 @@ class MainViewController: UIViewController {
     }
     
     @objc func didTapRefresh() {
-        subscribeViewModel()
         viewModel.fetchCharacters()
     }
 }

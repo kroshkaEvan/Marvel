@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Constants {
     struct API {
@@ -25,5 +26,9 @@ class Constants {
     
     class Strings {
         static let placeholder = "Enter a Marvel character"
+    }
+    
+    class Image {
+        static let backgroundOptionsImage = UIImage(named: "shield")
     }
 }

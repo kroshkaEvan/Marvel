@@ -27,7 +27,11 @@ struct CharacterImage: Decodable {
         guard let path = path,
               let format = format else { return }
         if let url = URL(string: "\(path)/\(size.rawValue).\(format)") {
-            Nuke.loadImage(with: url, into: imageView)
+            let options = ImageLoadingOptions(
+                placeholder: Constants.Image.backgroundOptionsImage,
+                transition: .fadeIn(duration: 0.5)
+            )
+            Nuke.loadImage(with: url, options: options, into: imageView)
         }
     }
 }

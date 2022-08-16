@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import Nuke
 
 protocol DetailViewModelProtocol: AnyObject {
     var resultComics: Observable<[Character]> {get set}

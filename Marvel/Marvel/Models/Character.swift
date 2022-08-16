@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 struct Character: Decodable {
     let id: Int?
