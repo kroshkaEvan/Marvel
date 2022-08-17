@@ -6,7 +6,7 @@
 ![Снимок экрана 2022-08-12 в 22 59 44](https://user-images.githubusercontent.com/95620294/184434993-c2f79de2-7e26-45dd-8b4a-8a5696f67f00.png)
 
 ## Technology stack
-> - MVVM pattern
+> - MVVM architecture
 > - UIKit
 > - Alamofire 
 > - SnapKit
