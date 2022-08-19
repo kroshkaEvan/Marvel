@@ -114,7 +114,7 @@
 		BC5CA66628A2533400DEDCC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				BC4491B028ABA8F100EF2107 /* heroesassembleacad.ttf */,
+				BCBC330228AF878F00BCF355 /* Font */,
 				BC5CA66D28A2591000DEDCC9 /* Extensions */,
 				BC5CA64928A23A0300DEDCC9 /* LaunchScreen.storyboard */,
 				BC5CA64728A23A0300DEDCC9 /* Assets.xcassets */,
@@ -137,11 +137,9 @@
 		BC5CA66828A2535B00DEDCC9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BC5CA64228A239FA00DEDCC9 /* MainViewController.swift */,
-				BC5CA67428A26FED00DEDCC9 /* MainCell.swift */,
+				BCBC330328AF87A100BCF355 /* MainFlow */,
+				BCBC330428AF87C900BCF355 /* DetailFlow */,
 				BC5CA67228A26E4D00DEDCC9 /* LoadingView.swift */,
-				BC30B0CA28A3F23200467C79 /* DetailViewController.swift */,
-				BC30B0CE28A4361F00467C79 /* DetailCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,6 +151,32 @@
 				BC5CA67028A25A7D00DEDCC9 /* Strings + Ext..swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BCBC330228AF878F00BCF355 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				BC4491B028ABA8F100EF2107 /* heroesassembleacad.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		BCBC330328AF87A100BCF355 /* MainFlow */ = {
+			isa = PBXGroup;
+			children = (
+				BC5CA64228A239FA00DEDCC9 /* MainViewController.swift */,
+				BC5CA67428A26FED00DEDCC9 /* MainCell.swift */,
+			);
+			path = MainFlow;
+			sourceTree = "<group>";
+		};
+		BCBC330428AF87C900BCF355 /* DetailFlow */ = {
+			isa = PBXGroup;
+			children = (
+				BC30B0CE28A4361F00467C79 /* DetailCell.swift */,
+				BC30B0CA28A3F23200467C79 /* DetailViewController.swift */,
+			);
+			path = DetailFlow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -13,7 +13,8 @@ typealias CompletionClosure = ((Result<[Character], NetworkError>) -> Void)
 class NetworkManager {
     static let shared = NetworkManager()
         
-    func fetchCharacters(with name: String? = nil, completion: @escaping CompletionClosure) {
+    func fetchCharacters(with name: String? = nil,
+                         completion: @escaping CompletionClosure) {
         var parameters = Constants.API.parametrs
         let url = "\(Constants.API.URL)characters"
 
@@ -46,11 +47,8 @@ class NetworkManager {
             }
     }
     
-    func fetchCharactersPage(_ page: Int, completion: @escaping CompletionClosure) {
-
-    }
-    
-    func fetchComics(with id: String, completion: @escaping CompletionClosure) {
+    func fetchComics(with id: String,
+                     completion: @escaping CompletionClosure) {
         let parameters = Constants.API.parametrs
         let url = "\(Constants.API.URL)characters/\(id)/comics"
 

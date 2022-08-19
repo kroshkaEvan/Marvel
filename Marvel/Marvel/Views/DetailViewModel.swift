@@ -19,6 +19,7 @@ protocol DetailViewModelProtocol: AnyObject {
 class DetailViewModel: NSObject, DetailViewModelProtocol {
     
     // MARK: - Properties
+    
     var resultComics: Observable<[Character]> = Observable([])
     var viewState: Observable<ViewState> = Observable(.loading)
     var error: Observable<NetworkError> = Observable(.serverError)
