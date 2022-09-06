@@ -34,7 +34,7 @@
 
 /* Begin PBXFileReference section */
 		BC30B0CA28A3F23200467C79 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		BC30B0CC28A3F84800467C79 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailViewModel.swift; path = Marvel/Views/DetailViewModel.swift; sourceTree = SOURCE_ROOT; };
+		BC30B0CC28A3F84800467C79 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailViewModel.swift; path = Marvel/ViewModel/DetailViewModel.swift; sourceTree = SOURCE_ROOT; };
 		BC30B0CE28A4361F00467C79 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		BC4491B028ABA8F100EF2107 /* heroesassembleacad.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = heroesassembleacad.ttf; sourceTree = "<group>"; };
 		BC5CA63B28A239FA00DEDCC9 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,7 +54,7 @@
 		BC5CA67028A25A7D00DEDCC9 /* Strings + Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings + Ext..swift"; sourceTree = "<group>"; };
 		BC5CA67228A26E4D00DEDCC9 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BC5CA67428A26FED00DEDCC9 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
-		BC5CA67A28A27FAE00DEDCC9 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewModel.swift; path = Marvel/MainViewModel.swift; sourceTree = SOURCE_ROOT; };
+		BC5CA67A28A27FAE00DEDCC9 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewModel.swift; path = Marvel/ViewModel/MainViewModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +90,8 @@
 		BC5CA63D28A239FA00DEDCC9 /* Marvel */ = {
 			isa = PBXGroup;
 			children = (
+				BCA95E5828C72CDD009B052B /* ViewModel */,
 				BC5CA66528A2532900DEDCC9 /* Models */,
-				BC5CA66728A2534300DEDCC9 /* ViewModels */,
 				BC5CA66828A2535B00DEDCC9 /* Views */,
 				BC5CA66628A2533400DEDCC9 /* Supporting Files */,
 				BC5CA64C28A23A0300DEDCC9 /* Info.plist */,
@@ -122,15 +122,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BC5CA66728A2534300DEDCC9 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				BC5CA67A28A27FAE00DEDCC9 /* MainViewModel.swift */,
-				BC30B0CC28A3F84800467C79 /* DetailViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		BC5CA66828A2535B00DEDCC9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +139,15 @@
 				BC5CA67028A25A7D00DEDCC9 /* Strings + Ext..swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BCA95E5828C72CDD009B052B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BC5CA67A28A27FAE00DEDCC9 /* MainViewModel.swift */,
+				BC30B0CC28A3F84800467C79 /* DetailViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BCBC330228AF878F00BCF355 /* Font */ = {

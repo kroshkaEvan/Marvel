@@ -128,16 +128,6 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = viewModel.character?.name
         descriptionLabel.text = viewModel.character?.description
         fetchComics()
-        checkFont()
-    }
-    
-    func checkFont() {
-        
-        for family in UIFont.familyNames.sorted() {
-            let names = UIFont.fontNames(forFamilyName: family)
-            print("Family: \(family) Font names: \(names)")
-        }
-        
     }
     
     private func fetchComics() {
